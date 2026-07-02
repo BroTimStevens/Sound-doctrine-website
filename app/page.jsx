@@ -1,4 +1,4 @@
-import { Play, Users, Youtube, Instagram, Facebook, Mail } from "lucide-react";
+import { Play, Users, Youtube, Facebook, Mail } from "lucide-react";
 
 const youtubeUrl = "https://youtube.com/@brotim2024";
 
