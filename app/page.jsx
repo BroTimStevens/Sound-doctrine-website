@@ -1,4 +1,4 @@
-import { Play, Users, Youtube, Facebook, Mail } from "lucide-react";
+import { Play, Users, Mail } from "lucide-react";
 
 const youtubeUrl = "https://youtube.com/@brotim2024";
 
@@ -26,7 +26,7 @@ export default function HomePage() {
           <nav className="menu">
             <a href="#home">Home</a><a href="#teachings">Teachings</a><a href="#community">Community</a><a href="#merch">Merch</a><a href="#contact">Contact</a>
           </nav>
-          <div className="icons"><Youtube size={19}/><Instagram size={18}/><Facebook size={18}/></div>
+        ></div>
           <a className="topCta" href={youtubeUrl} target="_blank">Join The Community</a>
         </div>
       </header>
@@ -90,7 +90,7 @@ export default function HomePage() {
         <div className="footerInner">
           <a className="brand" href="#home"><img src="/logo.jpeg" alt="Sound Doctrine with Bro Tim logo"/><div><div className="brandMain">Sound Doctrine</div><div className="brandSub">with Bro Tim</div></div></a>
           <div className="footerText">Teaching the uncompromised Word of God for a generation that needs truth.</div>
-          <div className="footerIcons"><a href={youtubeUrl} target="_blank" aria-label="YouTube"><Youtube size={21}/></a><Instagram size={20}/><Facebook size={20}/><Mail size={20}/></div>
+          <div className="footerIcons"><a href={youtubeUrl} target="_blank" aria-<Mail size={20}/></div>
         </div>
       </footer>
     </main>
