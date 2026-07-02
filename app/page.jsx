@@ -26,9 +26,9 @@ export default function HomePage() {
           <nav className="menu">
             <a href="#home">Home</a><a href="#teachings">Teachings</a><a href="#community">Community</a><a href="#merch">Merch</a><a href="#contact">Contact</a>
           </nav>
-        ></div>
-          <a className="topCta" href={youtubeUrl} target="_blank">Join The Community</a>
         </div>
+          <a className="topCta" href={youtubeUrl} target="_blank">Join The Community</a>
+        
       </header>
 
       <section id="home" className="hero">
