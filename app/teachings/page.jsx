@@ -3,6 +3,8 @@
 
 import { useState } from "react";
 
+import { teachings as videos, cloudflareCustomerCode as customerCode } from "../../data/teachings";
+
 const categories = [
   "All Videos",
   "Bible Studies",
@@ -11,17 +13,15 @@ const categories = [
   "Current Events",
 ];
 
-const videos = [
-  {
-    id: "38b8546c11b72c8f24880a2756b3a892",
-    title: "Tabernacles Pt. 3 — Deuteronomy Chapters 11–16",
-    category: "Bible Studies",
-    description:
-      "Continue studying the Feast of Tabernacles and the book of Deuteronomy with Bro Tim.",
-  },
-];
 
-const customerCode = "customer-09hxjkro439e79d1";
+  
+    
+    
+    
+    
+  
+
+
 
 export default function TeachingsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Videos");
