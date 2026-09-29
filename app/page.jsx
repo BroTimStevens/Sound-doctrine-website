@@ -169,7 +169,13 @@ export default function HomePage() {
           <h2 className="panelTitle">Latest Videos</h2>
           <div className="videoList">
             {videos.map((video) => (
-              <a className="miniVideo" href={youtubeUrl} target="_blank" rel="noreferrer" key={video.title}>
+              
+
+<a className="miniVideo"
+href={getTeachingWatchUrl(featuredTeaching.id)}
+
+target="_blank" rel="noreferrer" key={video.title}>
+
                 <div className="miniThumb">{video.time}</div>
                 <div>
                   <h3>{video.title}</h3>
