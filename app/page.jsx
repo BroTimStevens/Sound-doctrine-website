@@ -1,6 +1,12 @@
+
+import { getFeaturedTeaching, getTeachingEmbedUrl, getTeachingWatchUrl } from "../data/teachings";
+
 const youtubeUrl = "https://youtube.com/@brotim2024";
 
-const cloudflareVideo = "https://customer-09hxjkro439e79d1.cloudflarestream.com/38b8546c11b72c8f24880a2756b3a892/iframe";
+
+const featuredTeaching = getFeaturedTeaching();
+const cloudflareVideo = getTeachingEmbedUrl(featuredTeaching.id);
+
 
 const videos = [
   {
@@ -128,7 +134,7 @@ export default function HomePage() {
 
 <a
   className="goldLink"
-  href="https://customer-09hxjkro439e79d1.cloudflarestream.com/38b8546c11b72c8f24880a2756b3a892/watch"
+  href={getTeachingWatchUrl(featuredTeaching.id)}
   target="_blank"
   rel="noreferrer"
 >
