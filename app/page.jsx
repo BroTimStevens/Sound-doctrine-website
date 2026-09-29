@@ -8,23 +8,31 @@ const featuredTeaching = getFeaturedTeaching();
 const cloudflareVideo = getTeachingEmbedUrl(featuredTeaching.id);
 
 
+
 const videos = [
   {
-    label: "Latest Teaching",
-    title: "The Weapons Of Our Warfare",
-    time: "28:45",
-  },
-  {
-    label: "Bible Study",
-    title: "Discerning Truth In A Deceiving World",
-    time: "22:31",
-  },
-  {
-    label: "Sound Doctrine",
-    title: "Walking By Faith Not By Sight",
-    time: "24:18",
+    label: featuredTeaching.category,
+    title: featuredTeaching.title,
+    time: "Watch Now",
   },
 ];
+
+  
+    
+    
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    
+    
+  
+
 
 const studies = [
   {
