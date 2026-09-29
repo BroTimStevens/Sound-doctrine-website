@@ -1,5 +1,7 @@
 const youtubeUrl = "https://youtube.com/@brotim2024";
 
+const cloudflareVideo = "https://customer-09hxjkro439e79d1.cloudflarestream.com/38b8546c11b72c8f24880a2756b3a892/iframe";
+
 const videos = [
   {
     label: "Latest Teaching",
@@ -101,21 +103,52 @@ export default function HomePage() {
       <section className="dashboard" aria-label="Featured ministry content">
         <article className="glass featured">
           <h2 className="panelTitle">Featured Teaching</h2>
-          <div className="featuredArt">
-            <div className="playButton">▶</div>
-            <h3>
-              Stand <span>Firm</span>
-              <br />
-              In The Truth
-            </h3>
-          </div>
-          <h4>Stand Firm In The Truth</h4>
-          <p className="muted">
-            The enemy is real, but so is your calling. It&apos;s time to stand firm in God&apos;s truth.
-          </p>
-          <a className="goldLink" href={youtubeUrl} target="_blank" rel="noreferrer">
-            Watch Now →
-          </a>
+          
+<div className="featuredArt">
+  <iframe
+    src={cloudflareVideo}
+    title="Tabernacles Pt.3 Deuteronomy Chapters 11-16"
+    style={{
+      width: "100%",
+      height: "100%",
+      minHeight: "280px",
+      border: "none",
+    }}
+    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+    allowFullScreen
+  />
+</div>
+
+<h4>Tabernacles Pt.3 — Deuteronomy Chapters 11–16</h4>
+
+<p className="muted">
+  Join Bro Tim for Part 3 of the Feast of Tabernacles Bible study,
+  examining Deuteronomy chapters 11 through 16.
+</p>
+
+<a
+  className="goldLink"
+  href="https://customer-09hxjkro439e79d1.cloudflarestream.com/38b8546c11b72c8f24880a2756b3a892/watch"
+  target="_blank"
+  rel="noreferrer"
+>
+  Watch Full Teaching →
+</a>
+
+            
+            
+            
+              
+            
+            
+      
+          
+          
+            
+          
+          
+            
+        
         </article>
 
         <article className="glass">
