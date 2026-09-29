@@ -53,7 +53,7 @@ export default function HomePage() {
 
           <nav className="menu" aria-label="Main navigation">
             <a href="#home">Home</a>
-            <a href="#teachings">Teachings</a>
+            <a href="/teachings">Teachings</a>
             <a href="#community">Community</a>
             <a href="#merch">Merch</a>
             <a href="#contact">Contact</a>
