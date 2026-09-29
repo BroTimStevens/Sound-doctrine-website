@@ -133,12 +133,14 @@ export default function HomePage() {
   />
 </div>
 
-<h4>Tabernacles Pt.3 — Deuteronomy Chapters 11–16</h4>
+<h4>{featuredTeaching.title}</h4>
 
 <p className="muted">
-  Join Bro Tim for Part 3 of the Feast of Tabernacles Bible study,
-  examining Deuteronomy chapters 11 through 16.
+  {featuredTeaching.description}
 </p>
+  
+  
+
 
 <a
   className="goldLink"
