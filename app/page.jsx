@@ -207,7 +207,7 @@ target="_blank" rel="noreferrer" key={video.title}>
             <p className="muted">
               Connect with believers, ask questions, and grow in the Word together.
             </p>
-            <a className="goldLink" href={youtubeUrl} target="_blank" rel="noreferrer">
+            <a className="goldLink" href="/community" target="_blank" rel="noreferrer">
               Join The Community
             </a>
           </article>
