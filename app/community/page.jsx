@@ -19,9 +19,17 @@ export default function CommunityPage() {
             <h2>STAY CONNECTED</h2>
 
             <p>
-              Join the Sound Doctrine community to receive ministry updates,
-              new Bible studies, teachings, and important announcements.
+              Join the Sound Doctrine community and receive new Bible studies,
+              ministry updates, livestream announcements, and important news
+              directly from Bro Tim.
             </p>
+
+            <div className="communityBenefits">
+              <p>✦ NEW BIBLE STUDIES & TEACHINGS</p>
+              <p>✦ LIVESTREAM NOTIFICATIONS</p>
+              <p>✦ MINISTRY UPDATES</p>
+              <p>✦ IMPORTANT ANNOUNCEMENTS</p>
+            </div>
 
             <a
               className="btn btnPrimary"
@@ -33,6 +41,10 @@ export default function CommunityPage() {
             </a>
 
             <p className="communityNote">
+              Stand with believers who desire biblical truth and sound doctrine.
+            </p>
+
+            <p className="communityScripture">
               “For the time will come when they will not endure sound doctrine.”
             </p>
 
