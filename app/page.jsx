@@ -1,5 +1,7 @@
 
-import { getFeaturedTeaching, getTeachingEmbedUrl, getTeachingWatchUrl } from "../data/teachings";
+
+import { teachings, getFeaturedTeaching, getTeachingEmbedUrl, getTeachingWatchUrl } from "../data/teachings";
+
 
 const youtubeUrl = "https://youtube.com/@brotim2024";
 
@@ -9,13 +11,18 @@ const cloudflareVideo = getTeachingEmbedUrl(featuredTeaching.id);
 
 
 
-const videos = [
-  {
-    label: featuredTeaching.category,
-    title: featuredTeaching.title,
-    time: "Watch Now",
-  },
-];
+const videos = teachings.map((teaching) => ({
+  id: teaching.id,
+  label: teaching.category,
+  title: teaching.title,
+  time: "Watch Now",
+}));
+  
+    
+    
+    
+  
+
 
   
     
@@ -174,7 +181,7 @@ export default function HomePage() {
               
 
 <a className="miniVideo"
-href={getTeachingWatchUrl(featuredTeaching.id)}
+href={getTeachingWatchUrl(video.id)}
 
 target="_blank" rel="noreferrer" key={video.title}>
 
