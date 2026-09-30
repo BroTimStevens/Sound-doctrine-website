@@ -185,7 +185,13 @@ href={getTeachingWatchUrl(video.id)}
 
 target="_blank" rel="noreferrer" key={video.title}>
 
-                <div className="miniThumb">{video.time}</div>
+         <div className="miniThumb">
+  <img
+    src={`https://customer-09hxjkro439e79d1.cloudflarestream.com/${video.id}/thumbnails/thumbnail.jpg`}
+    alt={video.title}
+    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+  />
+</div>       
                 <div>
                   <h3>{video.title}</h3>
                   <p>{video.label}</p>
