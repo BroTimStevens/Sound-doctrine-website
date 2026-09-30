@@ -75,12 +75,12 @@ export default function HomePage() {
           <nav className="menu" aria-label="Main navigation">
             <a href="#home">Home</a>
             <a href="/teachings">Teachings</a>
-            <a href="#community">Community</a>
+            <a href="/community">Community</a>
             <a href="#merch">Merch</a>
             <a href="#contact">Contact</a>
           </nav>
 
-          <a className="topCta" href={youtubeUrl} target="_blank" rel="noreferrer">
+          <a className="topCta" href="/community">
             Join The Community
           </a>
         </div>
@@ -108,7 +108,7 @@ export default function HomePage() {
               <a className="btn btnPrimary" href={youtubeUrl} target="_blank" rel="noreferrer">
                 ▶ Watch Latest Teaching
               </a>
-              <a className="btn btnSecondary" href="#community">
+              <a className="btn btnSecondary" href="/community">
                 Join The Community
               </a>
             </div>
