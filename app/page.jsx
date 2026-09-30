@@ -258,10 +258,7 @@ target="_blank" rel="noreferrer" key={video.title}>
             <p className="muted">
               Get updates for new teachings, livestream announcements, prophecy studies, and future ministry content.
             </p>
-            <form className="signup">
-              <input type="email" placeholder="Enter your email" aria-label="Email address" />
-              <button type="button">Notify Me</button>
-            </form>
+        <a className="btn btnPrimary" href="https://preview.mailerlite.io/forms/2671587/199997741833651804/share" target="_blank" rel="noreferrer">Join The Community</a>
           </div>
 
           <div className="scriptureCard">
