@@ -50,4 +50,4 @@ export const config = {
   matcher: ["/upload/:path*", "/api/upload-url/:path*"],
 };
 
-};
+
