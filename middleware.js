@@ -47,5 +47,7 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: "/upload/:path*",
+  matcher: ["/upload/:path*", "/api/upload-url/:path*"],
+};
+
 };
