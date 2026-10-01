@@ -2,9 +2,55 @@
 
 import { useState } from "react";
 
+const CHUNK_SIZE = 50 * 1024 * 1024;
+
 export default function UploadPage() {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  async function uploadChunk(uploadURL, chunk, offset) {
+    const response = await fetch(uploadURL, {
+      method: "PATCH",
+      headers: {
+        "Tus-Resumable": "1.0.0",
+        "Upload-Offset": String(offset),
+        "Content-Type": "application/offset+octet-stream",
+      },
+      body: chunk,
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Upload failed at ${Math.round(offset / 1024 / 1024)} MB.`
+      );
+    }
+
+    const nextOffset = response.headers.get("Upload-Offset");
+
+    if (nextOffset === null) {
+      return offset + chunk.size;
+    }
+
+    return Number(nextOffset);
+  }
+
+  async function getServerOffset(uploadURL) {
+    const response = await fetch(uploadURL, {
+      method: "HEAD",
+      headers: {
+        "Tus-Resumable": "1.0.0",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not check the upload progress.");
+    }
+
+    const offset = response.headers.get("Upload-Offset");
+
+    return offset ? Number(offset) : 0;
+  }
 
   async function handleUpload() {
     if (!file) {
@@ -13,35 +59,60 @@ export default function UploadPage() {
     }
 
     try {
+      setProgress(0);
       setStatus("Preparing upload...");
 
       const response = await fetch("/api/upload-url", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          size: file.size,
+          name: file.name,
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok || !data.uploadURL) {
-        throw new Error(data.error || "Could not create upload URL.");
+        throw new Error(
+          data.error || "Could not create the Cloudflare upload URL."
+        );
       }
 
-      setStatus("Uploading video to Cloudflare...");
+      const uploadURL = data.uploadURL;
 
-      const formData = new FormData();
-      formData.append("file", file);
+      let offset = 0;
 
-      const uploadResponse = await fetch(data.uploadURL, {
-        method: "POST",
-        body: formData,
-      });
+      while (offset < file.size) {
+        const end = Math.min(offset + CHUNK_SIZE, file.size);
+        const chunk = file.slice(offset, end);
 
-      if (!uploadResponse.ok) {
-        throw new Error("Video upload failed.");
+        setStatus(
+          `Uploading ${Math.round(offset / 1024 / 1024)} MB of ${Math.round(
+            file.size / 1024 / 1024
+          )} MB...`
+        );
+
+        try {
+          offset = await uploadChunk(uploadURL, chunk, offset);
+        } catch (error) {
+          setStatus("Connection interrupted. Resuming upload...");
+
+          offset = await getServerOffset(uploadURL);
+        }
+
+        const percent = Math.min(
+          100,
+          Math.round((offset / file.size) * 100)
+        );
+
+        setProgress(percent);
       }
 
-      setStatus(
-        `Upload complete! Video ID: ${data.uid}`
-      );
+      setProgress(100);
+      setStatus("Upload complete! Your teaching is now being processed.");
     } catch (error) {
       setStatus(error.message || "Upload failed.");
     }
@@ -98,13 +169,25 @@ export default function UploadPage() {
         <input
           type="file"
           accept="video/*"
-          onChange={(event) => setFile(event.target.files?.[0] || null)}
+          onChange={(event) => {
+            setFile(event.target.files?.[0] || null);
+            setStatus("");
+            setProgress(0);
+          }}
           style={{
             display: "block",
             margin: "0 auto 25px",
             color: "#ffffff",
           }}
         />
+
+        {file && (
+          <p style={{ color: "#dcb65d", marginBottom: "20px" }}>
+            Selected: {file.name}
+            <br />
+            Size: {(file.size / 1024 / 1024 / 1024).toFixed(2)} GB
+          </p>
+        )}
 
         <button
           onClick={handleUpload}
@@ -131,6 +214,31 @@ export default function UploadPage() {
           >
             {status}
           </p>
+        )}
+
+        {progress > 0 && (
+          <div style={{ marginTop: "25px" }}>
+            <div
+              style={{
+                width: "100%",
+                height: "14px",
+                background: "#333333",
+                borderRadius: "7px",
+                overflow: "hidden",
+              }}
+            >
+              <div
+                style={{
+                  width: `${progress}%`,
+                  height: "100%",
+                  background: "#dcb65d",
+                  transition: "width 0.3s ease",
+                }}
+              />
+            </div>
+
+            <p style={{ color: "#ffffff" }}>{progress}%</p>
+          </div>
         )}
       </div>
     </main>
