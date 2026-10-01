@@ -24,6 +24,12 @@ export const teachings = [
   category: "Bible Studies",
   description: "Continue the Feast of Tabernacles Bible study with Bro Tim, covering Deuteronomy chapters 21 through 25.",
 },
+  {
+  id: "c2cf46f28f37ba1ccb61fc346af73c03",
+  title: "Tabernacles Pt. 6 — Deuteronomy Chapters 26–29",
+  category: "Bible Studies",
+  description: "Continue the Feast of Tabernacles Bible study with Bro Tim, covering Deuteronomy chapters 26 through 29.",
+},
 ];
 
 export function getFeaturedTeaching() {
