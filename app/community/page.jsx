@@ -44,11 +44,12 @@ export default function CommunityPage() {
               Stand with believers who desire biblical truth and sound doctrine.
             </p>
 
-            <p className="communityScripture">
+          <p className="communityScripture">
               “For the time will come when they will not endure sound doctrine.”
-            </p>
+            <br />
 
-            <p className="communityScripture">2 Timothy 4:3</p>
+            <span>— 2 Timothy 4:3</span> 
+            </p>
           </div>
         </div>
       </section>
