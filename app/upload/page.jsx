@@ -6,6 +6,7 @@ const CHUNK_SIZE = 50 * 1024 * 1024;
 
 export default function UploadPage() {
   const [file, setFile] = useState(null);
+  const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
   const [progress, setProgress] = useState(0);
 
@@ -70,6 +71,7 @@ export default function UploadPage() {
         body: JSON.stringify({
           size: file.size,
           name: file.name,
+          title: title,
         }),
       });
 
@@ -165,7 +167,23 @@ export default function UploadPage() {
         >
           Upload a video directly to the Sound Doctrine video library.
         </p>
-
+<input
+    type="text"
+    value={title}
+    onChange={(event) => setTitle(event.target.value)}
+    placeholder="Enter teaching title"
+    style={{
+        display: "block",
+        width: "100%",
+        padding: "14px",
+        margin: "0 auto 20px",
+        color: "#ffffff",
+        background: "#181818",
+        border: "1px solid #595451",
+        borderRadius: "8px",
+        fontSize: "16px",
+    }}
+/>
         <input
           type="file"
           accept="video/*"
