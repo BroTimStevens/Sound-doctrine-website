@@ -13,6 +13,7 @@ export async function POST(request) {
     const body = await request.json();
     const uploadLength = body.size;
     const fileName = body.name || "teaching-video";
+    const title = body.title || fileName;
 
     if (!uploadLength) {
       return Response.json(
@@ -24,7 +25,7 @@ export async function POST(request) {
     const encodedFileName = Buffer.from(fileName).toString("base64");
 
     const uploadMetadata =
-      `filename ${encodedFileName},` +
+      name ${Buffer.from(title).toString("base64")},+
       `maxDurationSeconds NzIwMA==`;
 
     const response = await fetch(
