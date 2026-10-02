@@ -25,7 +25,7 @@ export async function POST(request) {
     const encodedFileName = Buffer.from(fileName).toString("base64");
 
     const uploadMetadata =
-      name ${Buffer.from(title).toString("base64")},+
+      `name ${Buffer.from(title).toString("base64")},`+
       `maxDurationSeconds NzIwMA==`;
 
     const response = await fetch(
