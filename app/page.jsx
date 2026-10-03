@@ -200,7 +200,7 @@ export default function HomePage() {  const [videos, setVideos] = useState([]);
               
 
 <a className="miniVideo"
-href={`https://customer-09hxjkr0439e79d1.cloudflarestream.com/${video.id}/iframe`}
+href={`https://iframe.videodelivery.net/${video.id}`}
 
 target="_blank" rel="noreferrer" key={video.title}>
 
