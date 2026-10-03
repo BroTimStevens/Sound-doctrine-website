@@ -1,5 +1,5 @@
-
-
+"use client";
+import { useEffect, useState } from "react";
 import { teachings, getFeaturedTeaching, getTeachingEmbedUrl, getTeachingWatchUrl } from "../data/teachings";
 
 
@@ -11,12 +11,31 @@ const cloudflareVideo = getTeachingEmbedUrl(featuredTeaching.id);
 
 
 
-const videos = teachings.map((teaching) => ({
-  id: teaching.id,
-  label: teaching.category,
-  title: teaching.title,
-  time: "Watch Now",
-}));
+const [videos, setVideos] = useState([]);
+
+useEffect(() => {
+  fetch("/api/videos")
+    .then((response) => response.json())
+    .then((data) => {
+      const cloudflareVideos = (data.result || [])
+        .filter((video) => video.status?.state === "ready")
+        .map((video) => ({
+          id: video.uid,
+          label: "Video",
+          title: video.meta?.name || "Untitled Teaching",
+          time: "Watch Now",
+        }));
+
+      setVideos(cloudflareVideos);
+    })
+    .catch((error) => {
+      console.error("Could not load Cloudflare videos:", error);
+    });
+}, []);
+  
+
+  
+
   
     
     
@@ -181,7 +200,7 @@ export default function HomePage() {
               
 
 <a className="miniVideo"
-href={getTeachingWatchUrl(video.id)}
+href={`https://customer-09hxjkr0439e79d1.cloudflarestream.com/${video.id}/iframe`}
 
 target="_blank" rel="noreferrer" key={video.title}>
 
