@@ -11,27 +11,7 @@ const cloudflareVideo = getTeachingEmbedUrl(featuredTeaching.id);
 
 
 
-const [videos, setVideos] = useState([]);
 
-useEffect(() => {
-  fetch("/api/videos")
-    .then((response) => response.json())
-    .then((data) => {
-      const cloudflareVideos = (data.result || [])
-        .filter((video) => video.status?.state === "ready")
-        .map((video) => ({
-          id: video.uid,
-          label: "Video",
-          title: video.meta?.name || "Untitled Teaching",
-          time: "Watch Now",
-        }));
-
-      setVideos(cloudflareVideos);
-    })
-    .catch((error) => {
-      console.error("Could not load Cloudflare videos:", error);
-    });
-}, []);
   
 
   
@@ -78,7 +58,27 @@ const studies = [
   },
 ];
 
-export default function HomePage() {
+export default function HomePage() {  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/videos")
+      .then((response) => response.json())
+      .then((data) => {
+        const cloudflareVideos = (data.result || [])
+          .filter((video) => video.status?.state === "ready")
+          .map((video) => ({
+            id: video.uid,
+            label: "Video",
+            title: video.meta?.name || "Untitled Teaching",
+            time: "Watch Now",
+          }));
+
+        setVideos(cloudflareVideos);
+      })
+      .catch((error) => {
+        console.error("Could not load Cloudflare videos:", error);
+      });
+  }, []);
   return (
     <main className="page">
       <header className="topbar">
