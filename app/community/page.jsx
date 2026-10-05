@@ -1,6 +1,40 @@
+"use client";
+
+import { useState } from "react";
+
 export default function CommunityPage() {
-  const signupUrl =
-    "https://preview.mailerlite.io/forms/2671587/199997741833651804/share";
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/mailerlite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setMessage("You're subscribed! Welcome to the Sound Doctrine community.");
+      setEmail("");
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <main>
@@ -25,30 +59,40 @@ export default function CommunityPage() {
             </p>
 
             <div className="communityBenefits">
-              <p>✦ NEW BIBLE STUDIES & TEACHINGS</p>
-              <p>✦ LIVESTREAM NOTIFICATIONS</p>
-              <p>✦ MINISTRY UPDATES</p>
-              <p>✦ IMPORTANT ANNOUNCEMENTS</p>
+              <p>+ NEW BIBLE STUDIES & TEACHINGS</p>
+              <p>+ LIVESTREAM NOTIFICATIONS</p>
+              <p>+ MINISTRY UPDATES</p>
+              <p>+ IMPORTANT ANNOUNCEMENTS</p>
             </div>
 
-            <a
-              className="btn btnPrimary"
-              href={signupUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              JOIN THE COMMUNITY
-            </a>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+
+              <button
+                type="submit"
+                className="btn btnPrimary"
+                disabled={loading}
+              >
+                {loading ? "JOINING..." : "JOIN THE COMMUNITY"}
+              </button>
+            </form>
+
+            {message && <p className="communityNote">{message}</p>}
 
             <p className="communityNote">
               Stand with believers who desire biblical truth and sound doctrine.
             </p>
 
-          <p className="communityScripture">
+            <p className="communityScripture">
               “For the time will come when they will not endure sound doctrine.”
-            <br />
-
-            <span>— 2 Timothy 4:3</span> 
+              <br />
+              <span>— 2 Timothy 4:3</span>
             </p>
           </div>
         </div>
