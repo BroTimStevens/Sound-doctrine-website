@@ -30,6 +30,12 @@ export const teachings = [
   category: "Bible Studies",
   description: "Continue the Feast of Tabernacles Bible study with Bro Tim, covering Deuteronomy chapters 26 through 29.",
 },
+    {
+    id: "60c5fe1aed854b7a3567a93ed4f7b500",
+    title: "Another Israelite Death: Who Is Accountable",
+    category: "Current Events",
+    description: "A discussion examining another Israelite death and the question of who is accountable.",
+  },
 ];
 
 export function getFeaturedTeaching() {
