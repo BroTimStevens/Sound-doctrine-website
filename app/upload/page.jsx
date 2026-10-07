@@ -114,7 +114,27 @@ export default function UploadPage() {
       }
 
       setProgress(100);
-      setStatus("Upload complete! Your teaching is now being processed.");
+
+    
+
+try {
+  const notifyResponse = await fetch("/api/notify-subscribers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title }),
+  });
+
+  if (!notifyResponse.ok) {
+    console.error("Subscriber notification failed.");
+  }
+} catch (notifyError) {
+  console.error("Subscriber notification error:", notifyError);
+}
+
+setStatus("Upload complete! Your teaching is now being processed.");
+      
     } catch (error) {
       setStatus(error.message || "Upload failed.");
     }
